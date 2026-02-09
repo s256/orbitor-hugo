@@ -47,12 +47,16 @@
     </div>
 
     <div class="footer-btm py-4 mt-5">
-      <div class="row">
+      <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="copyright">
-            &copy; Copyright Reserved to <span class="text-color">{{ .copyright }}</span> by <a
-              href="{{ .copyright_link }}" target="_blank">{{ .copyright_author }}</a>
+            &copy; {{ now.Year }} <span class="text-color">{{ .copyright }}</span>
           </div>
+        </div>
+        <div class="col-lg-6 text-lg-right">
+          {{ range .legal_links }}
+          <a href="{{ .url | relURL }}" class="text-white-50 ml-3">{{ .name }}</a>
+          {{ end }}
         </div>
       </div>
     </div>
