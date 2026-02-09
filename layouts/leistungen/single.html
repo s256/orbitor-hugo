@@ -30,8 +30,8 @@
           <div class="row">
             {{ range . }}
             <div class="col-md-4 col-6 mb-4">
-              <a href="{{ . | relURL }}" class="glightbox" data-gallery="service-gallery">
-                <img src="{{ . | relURL }}" alt="" class="img-fluid rounded">
+              <a href="{{ .src | relURL }}" class="glightbox" data-gallery="service-gallery" data-description="{{ .description }}">
+                <img src="{{ .src | relURL }}" alt="{{ .description }}" class="img-fluid rounded">
               </a>
             </div>
             {{ end }}
