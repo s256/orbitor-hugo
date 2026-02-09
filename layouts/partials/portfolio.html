@@ -15,14 +15,16 @@
   <div class="container-fluid">
     <div class="row portfolio-gallery">
       {{ range where $.Site.RegularPages "Section" "project" }}
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-3 col-md-6">
         <div class="portflio-item position-relative mb-4">
           <a href="{{ .Permalink }}">
-            <img src="{{ .Params.thumbnail | default .Params.image | relURL }}" alt="" class="img-fluid w-100">
+            <div style="width:100%;height:250px;overflow:hidden;">
+              <img src="{{ .Params.thumbnail | default .Params.image | relURL }}" alt="{{ .Title }}" class="img-fluid" style="width:100%;height:100%;object-fit:cover;">
+            </div>
             <div class="overlay-item"><i class="ti-link"></i></div>
             <div class="portfolio-item-content">
               <h3 class="mb-0 text-white">{{ .Title }}</h3>
-              <p class="text-white-50">{{ .Params.category | default "Web Development" }}</p>
+              <p class="text-white-50">{{ .Params.category | default "" }}</p>
             </div>
           </a>
         </div>

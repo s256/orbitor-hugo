@@ -4,24 +4,28 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="heading text-center">
-          <h2 class="mb-4">{{ .Params.labels.portfolio_heading | default "Let's Check Some Works" }}</h2>
-          <p>We have the best experts to elevate your business to the next level, try is and you will see! We have the best experts to elevate your</p>
+          <h2 class="mb-4">{{ .Params.labels.portfolio_heading | default "Ausgewählte Projekte" }}</h2>
+          {{ with .Params.description }}
+          <p>{{ . }}</p>
+          {{ end }}
         </div>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="row ">
+    <div class="row">
       {{ range where .Site.RegularPages "Section" "project" }}
-      <div class="col-lg-4 col-md-6">
-        <div class="portflio-item position-relative mb-4">
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="portflio-item position-relative">
           <a href="{{ .Permalink }}">
-            <img src="{{ .Params.thumbnail | default .Params.image | relURL }}" alt="" class="img-fluid w-100">
+            <div style="width:100%;height:300px;overflow:hidden;border-radius:4px;">
+              <img src="{{ .Params.thumbnail | default .Params.image | relURL }}" alt="{{ .Title }}" class="img-fluid" style="width:100%;height:100%;object-fit:cover;">
+            </div>
             <div class="overlay-item"><i class="ti-link"></i></div>
             <div class="portfolio-item-content">
               <h3 class="mb-0 text-white">{{ .Title }}</h3>
-              <p class="text-white-50">{{ .Params.category | default "Web Development" }}</p>
+              <p class="text-white-50">{{ .Params.category | default "" }}</p>
             </div>
           </a>
         </div>

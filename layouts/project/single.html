@@ -1,30 +1,34 @@
 {{ define "main" }}
   {{ partial "page-title.html" . }}
 
-  <section class="section case-study">
+  <section class="section">
     <div class="container">
-      <div class="row">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="case-img">
-              <img src="{{ .Params.image | default "images/about/about.jpg" | relURL }}" alt="" class="img-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          {{ with .Params.subtitle }}
+          <span class="text-color d-block mb-2" style="font-size:1.1rem">{{ . }}</span>
+          {{ end }}
+          <h2 class="mb-4">{{ .Params.headline | default .Title }}</h2>
+
+          {{ .Content }}
+
+          {{ with .Params.gallery }}
+          <div class="project-gallery mt-4 mb-4">
+            <div class="row">
+              {{ range . }}
+              <div class="col-lg-3 col-md-4 col-6 mb-3">
+                <a href="{{ .src | relURL }}" class="glightbox" data-gallery="project-gallery" data-description="{{ .description }}">
+                  <img src="{{ .src | relURL }}" alt="{{ .description }}" class="img-fluid rounded" style="width:100%;height:200px;object-fit:cover;">
+                </a>
+              </div>
+              {{ end }}
             </div>
           </div>
+          {{ end }}
 
-          <div class="col-lg-6 col-md-8">
-            <div class="case-content pl-4 mt-4 mt-lg-0">
-              <h3 class="mb-3">{{ .Params.headline | default .Title }}</h3>
-              <p>{{ .Params.summary | default "Accusamus necessitatibus harum nobis quam omnis tempora cupiditate nihil, vero dolorum porro atque. Suscipit assumenda, minus tempora aliquid, ratione minima optio nihil." }}</p>
-
-              <ul class="list-unstyled project-info-list">
-                {{ with .Params.project_name }}<li><strong>Project Name: </strong>{{ . }}</li>{{ end }}
-                {{ with .Params.client }}<li><strong>Client: </strong>{{ . }}</li>{{ end }}
-                {{ with .Params.start_date }}<li><strong>Project Start Date:</strong> {{ . }}</li>{{ end }}
-                {{ with .Params.end_date }}<li><strong>Project Completion Date:</strong> {{ . }}</li>{{ end }}
-                {{ with .Params.project_url }}<li><strong>Project url:</strong> {{ . }}</li>{{ end }}
-              </ul>
-            </div>
-          </div>
+          {{ with .Params.content_below }}
+          {{ . | markdownify }}
+          {{ end }}
         </div>
       </div>
     </div>
@@ -32,46 +36,11 @@
 
   <section class="section pt-0">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6">
-          <div class="mb-5 mb-lg-0">
-            <img src="{{ .Params.images.strategies | default "images/about/process-1.jpg" | relURL }}" alt="" class="img-fluid">
-            <h4 class="mt-3">{{ .Params.labels.strategies | default "Our Strategies" }}</h4>
-            <p>Ducimus recusandae molestias, suscipit neque, sit inventore. Totam, adipisci eos numquam libero. Quasi dolore pariatur alias eligendi!</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="mb-5 mb-lg-0">
-            <img src="{{ .Params.images.challenges | default "images/about/process-2.jpg" | relURL }}" alt="" class="img-fluid">
-            <h4 class="mt-3">{{ .Params.labels.challenges | default "Our Challenges" }}</h4>
-            <p>Eveniet nisi eius qui necessitatibus exercitationem, quam suscipit harum, nostrum reprehenderit nobis error</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="mb-0">
-            <img src="{{ .Params.images.success | default "images/about/process-3.jpg" | relURL }}" alt="" class="img-fluid">
-            <h4 class="mt-3">{{ .Params.labels.success | default "Our Success" }}</h4>
-            <p>Eveniet nisi eius qui necessitatibus exercitationem, quam suscipit harum, nostrum reprehenderit nobis error</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section single-testimonial bg-gray">
-    <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="single-testimonial-block text-center">
-            <h2 class="mb-4">{{ .Params.labels.testimonial | default "Testimonial" }}</h2>
-            <img src="{{ .Params.images.testimonial | default "images/team/testimonial1.jpg" | relURL }}" alt="" class="img-fluid rounded-circle">
-            <div class="info mb-4 mt-4">
-              <h6 class="mb-0">John Partho</h6>
-              <span>Newyork USA</span>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio ex atque pariatur consequuntur maiores asperiores laudantium repellendus dolore quia eaque reprehenderit aliquam, quisquam similique dignissimos quas culpa eum fugit. Dolore.
-            </p>
+        <div class="col-lg-10 text-center">
+          <a href="{{ "kontakt/" | relURL }}" class="btn btn-main">{{ .Params.labels.contact_cta | default "Sie planen ein ähnliches Projekt? Sprechen Sie uns an." }}</a>
+          <div class="mt-3">
+            <a href="{{ "project/" | relURL }}">{{ .Params.labels.back_to_overview | default "Zurück zur Projektübersicht" }}</a>
           </div>
         </div>
       </div>
