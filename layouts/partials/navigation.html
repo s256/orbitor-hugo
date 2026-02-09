@@ -34,7 +34,7 @@
         {{ end }}
       </ul>
 
-      <a href="{{ "contact/" | relURL }}" class="btn {{ if not .IsHome }}btn-solid-white{{ else }}btn-solid-border{{ end }} d-none d-lg-block">Get an estimate <i class="fa fa-angle-right ml-2"></i></a>
+      <a href="{{ .Site.Params.cta_link | default "contact/" | relURL }}" class="btn {{ if not .IsHome }}btn-solid-white{{ else }}btn-solid-border{{ end }} d-none d-lg-block">{{ .Site.Params.cta_text | default "Get an estimate" }} <i class="fa fa-angle-right ml-2"></i></a>
     </div>
   </div>
 </nav>
