@@ -1,0 +1,74 @@
+{{ define "main" }}
+{{ partial "page-title.html" . }}
+
+<section class="section service-detail">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="service-content">
+          {{ with .Params.subtitle }}
+          <span class="text-color d-block mb-2">{{ . }}</span>
+          {{ end }}
+          <h2 class="mb-4">{{ .Title }}</h2>
+
+          {{ .Content }}
+
+          {{ with .Params.highlights }}
+          <div class="mt-4 mb-4">
+            <ul class="list-unstyled">
+              {{ range . }}
+              <li class="mb-2"><i class="ti-check-box text-color mr-2"></i>{{ . }}</li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+        </div>
+
+        {{ with .Params.gallery }}
+        <div class="service-gallery mt-5">
+          <h4 class="mb-4">{{ $.Params.labels.gallery | default "Bildergalerie" }}</h4>
+          <div class="row">
+            {{ range . }}
+            <div class="col-md-4 col-6 mb-4">
+              <a href="{{ . | relURL }}" class="popup-gallery">
+                <img src="{{ . | relURL }}" alt="" class="img-fluid rounded">
+              </a>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+
+      <div class="col-lg-4">
+        <div class="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
+          {{ with .Params.sidebar_icon }}
+          <div class="text-center mb-4">
+            <i class="{{ . }} text-color" style="font-size:4rem"></i>
+          </div>
+          {{ end }}
+
+          <div class="sidebar-widget mb-4">
+            <h5 class="mb-3">{{ .Params.labels.all_services | default "Alle Leistungen" }}</h5>
+            <ul class="list-unstyled">
+              {{ range where .Site.RegularPages "Section" "leistungen" }}
+              <li class="mb-2{{ if eq $.Permalink .Permalink }} font-weight-bold{{ end }}">
+                <a href="{{ .Permalink }}">
+                  <i class="ti-angle-right mr-2 text-color"></i>{{ .Title }}
+                </a>
+              </li>
+              {{ end }}
+            </ul>
+          </div>
+
+          <div class="sidebar-widget bg-light p-4 rounded">
+            <h5 class="mb-3">{{ .Params.labels.contact_cta | default "Projekt besprechen?" }}</h5>
+            <p>{{ .Params.labels.contact_text | default "Sprechen Sie uns an. Wir beraten Sie gerne persönlich." }}</p>
+            <a href="{{ "kontakt/" | relURL }}" class="btn btn-main btn-block">{{ .Params.labels.contact_button | default "Kontakt aufnehmen" }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

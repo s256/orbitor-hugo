@@ -1,0 +1,157 @@
+{{ define "main" }}
+{{ partial "page-title.html" . }}
+
+{{/* Service Detail Section — alternating image/text with links */}}
+{{ with .Params.services_detail }}
+<section class="section service-2">
+  <div class="container">
+    {{ range $i, $svc := . }}
+    {{ if eq $i 0 }}
+    <div class="row mb-5">
+    {{ else }}
+    <div class="{{ if eq (mod $i 2) 1 }}content-padding position-relative{{ end }}">
+    <div class="row mb-5">
+    {{ end }}
+      {{ if eq .image_position "left" }}
+      <div class="col-lg-6">
+        <div class="service-img mb-5 mb-lg-0">
+          {{ with .link }}<a href="{{ . | relURL }}">{{ end }}
+          <img src="{{ $svc.image | relURL }}" alt="" class="img-fluid rounded">
+          {{ with .link }}</a>{{ end }}
+        </div>
+      </div>
+      <div class="col-lg-6 d-flex align-items-center">
+        <div class="service-info">
+          <span class="text-color font-weight-bold">{{ .number }}</span>
+          <h3 class="text-md mb-4 mt-2">{{ with .link }}<a href="{{ . | relURL }}">{{ end }}{{ $svc.title }}{{ with .link }}</a>{{ end }}</h3>
+          <p>{{ .description }}</p>
+          {{ with .link }}<a href="{{ . | relURL }}" class="btn btn-main mt-3">Weiterlesen</a>{{ end }}
+        </div>
+      </div>
+      {{ else }}
+      <div class="col-lg-6 d-flex align-items-center">
+        <div class="service-info mb-5 mb-lg-0">
+          <span class="text-color font-weight-bold">{{ .number }}</span>
+          <h3 class="text-md mb-4 mt-2">{{ with .link }}<a href="{{ . | relURL }}">{{ end }}{{ $svc.title }}{{ with .link }}</a>{{ end }}</h3>
+          <p>{{ .description }}</p>
+          {{ with .link }}<a href="{{ . | relURL }}" class="btn btn-main mt-3">Weiterlesen</a>{{ end }}
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="service-img">
+          {{ with .link }}<a href="{{ . | relURL }}">{{ end }}
+          <img src="{{ $svc.image | relURL }}" alt="" class="img-fluid rounded">
+          {{ with .link }}</a>{{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ if gt $i 0 }}</div>{{ end }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{/* Case Study Timeline */}}
+{{ with .Params.case_study }}
+<section class="section case-study">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="case-study-content text-center mb-5">
+          <h2 class="mb-4">{{ .title }}</h2>
+          <p>{{ .description }}</p>
+        </div>
+      </div>
+    </div>
+
+    {{ range $i, $step := .steps }}
+    <div class="case-timeline">
+      <div class="case-timeline-divider"></div>
+      <div class="case-timeline-dot"></div>
+      <div class="row align-items-center">
+        {{ if eq (mod $i 2) 0 }}
+        <div class="col-lg-6">
+          <div class="case-img">
+            {{ with $step.link }}<a href="{{ . | relURL }}">{{ end }}
+            <img src="{{ $step.image | relURL }}" alt="" class="img-fluid rounded">
+            {{ with $step.link }}</a>{{ end }}
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="case-content">
+            <h4 class="mb-3">{{ with $step.link }}<a href="{{ . | relURL }}">{{ end }}{{ $step.title }}{{ with $step.link }}</a>{{ end }}</h4>
+            <p>{{ $step.description }}</p>
+            {{ with $step.link }}<a href="{{ . | relURL }}" class="text-color">Weiterlesen <i class="ti-angle-right ml-1"></i></a>{{ end }}
+          </div>
+        </div>
+        {{ else }}
+        <div class="col-lg-6 order-2 order-lg-1">
+          <div class="case-content">
+            <h4 class="mb-3">{{ with $step.link }}<a href="{{ . | relURL }}">{{ end }}{{ $step.title }}{{ with $step.link }}</a>{{ end }}</h4>
+            <p>{{ $step.description }}</p>
+            {{ with $step.link }}<a href="{{ . | relURL }}" class="text-color">Weiterlesen <i class="ti-angle-right ml-1"></i></a>{{ end }}
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2">
+          <div class="case-img">
+            {{ with $step.link }}<a href="{{ . | relURL }}">{{ end }}
+            <img src="{{ $step.image | relURL }}" alt="" class="img-fluid rounded">
+            {{ with $step.link }}</a>{{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{/* Services Grid */}}
+{{ with .Params.services_grid }}
+<section class="section service">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="heading">
+          <h2 class="mb-4">{{ .title | safeHTML }}</h2>
+          <p>{{ .description }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      {{ range $i, $item := .items }}
+      {{ if eq (mod $i 3) 0 }}<div class="col-lg-4 col-md-6">{{ end }}
+        <div class="service-item-list">
+          {{ with $item.link }}<a href="{{ . | relURL }}">{{ end }}
+          <i class="{{ $item.icon }}"></i>
+          <p>{{ $item.text | safeHTML }}</p>
+          {{ with $item.link }}</a>{{ end }}
+        </div>
+      {{ if or (eq (mod $i 3) 2) (eq $i (sub (len $.Params.services_grid.items) 1)) }}</div>{{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* CTA */}}
+{{ with .Params.cta }}
+<section class="cta-2 bg-light">
+  <div class="container">
+    <div class="cta-block py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <span class="text-color">{{ .subtitle }}</span>
+          <h2 class="mt-2 mb-4 mb-lg-0">{{ .title }}</h2>
+        </div>
+        <div class="col-lg-4">
+          <a href="{{ .button_link | relURL }}" class="btn btn-main btn-round-full float-lg-right">{{ .button_text }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}

@@ -107,7 +107,7 @@
     ],
   });
 
-  $(".portfolio-gallery").each(function () {
+  $(".portfolio-gallery, .service-gallery").each(function () {
     $(this)
       .find(".popup-gallery")
       .magnificPopup({
