@@ -1,3 +1,11 @@
+<style>
+  @media (min-width: 992px) {
+    .navbar .nav-item.dropdown:hover > .dropdown-menu {
+      display: block;
+      margin-top: 0;
+    }
+  }
+</style>
 <nav class="navbar navbar-expand-lg py-4 navigation header-padding {{ if not .IsHome }}nav-text-white{{ end }}" id="navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ "/" | relURL }}">
@@ -19,7 +27,7 @@
         {{ range .Site.Menus.main }}
           {{ if .HasChildren }}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown{{ .Name }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }}</a>
+            <a class="nav-link dropdown-toggle" href="{{ .URL | relURL }}">{{ .Name }}</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown{{ .Name }}">
               {{ range .Children }}
               <li><a class="dropdown-item" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
