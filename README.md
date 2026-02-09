@@ -16,6 +16,7 @@ Built with Bootstrap 4, this theme is suitable for software companies, digital a
 - Pricing page
 - All content driven by front matter and data files (no hardcoded text in layouts)
 - Overridable heading labels for localization (see [Customizing Labels](#customizing-labels))
+- Overridable images including backgrounds (see [Customizing Images](#customizing-images))
 
 ## Requirements
 
@@ -223,6 +224,80 @@ The following labels apply to the original standalone partials (service, case-st
 | `service_detail_1` .. `service_detail_3` | service-2.html | "Custom Software development", "Software Maintenance", "Web App Development" |
 | `portfolio_heading` | portfolio-page.html | "Let's Check Some Works" |
 | `pricing_heading` | pricing.html | "Our pricing" |
+
+## Customizing Images
+
+All images in the theme -- including background images -- can be overridden from front matter or data files via an `images` map. If no override is set, the built-in default image is used.
+
+Place your custom images in the site's `static/` directory (e.g. `static/images/my-bg.jpg`) and reference them as `images/my-bg.jpg`.
+
+### Page Title Background (all inner pages)
+
+Every page that shows the page-title banner can override its background:
+
+```yaml
+# content/about.md (or any page)
+images:
+  page_title_bg: "images/custom-banner.jpg"  # default: "images/bg/section-bg5.jpg"
+```
+
+### Homepage Slider (`content/_index.md`)
+
+Background images are set inside the `slider` block:
+
+```yaml
+slider:
+  title: "Welcome"
+  bg_image: "images/hero.jpg"       # default: "images/bg/main-banner1.jpg"
+  banner_img: "images/overlay.png"  # default: "images/bg/bg-half.png"
+```
+
+### Call-to-Action Section (`content/_index.md`)
+
+```yaml
+cta:
+  title: "Let's talk"
+  bg_image: "images/cta-bg.jpg"  # default: "images/bg/bg-2.jpg"
+```
+
+### Logos (`hugo.toml`)
+
+The navigation bar reads logos from site params:
+
+```toml
+[params]
+  logo = "images/my-logo.png"          # default: "images/logo.png"
+  logoWhite = "images/my-logo-white.png"  # default: "images/logo-w.png"
+```
+
+### Project Pages (`content/project/my-project.md`)
+
+```yaml
+image: "images/projects/main.jpg"  # hero image (default: "images/about/about.jpg")
+images:
+  strategies: "images/projects/strategy.jpg"    # default: "images/about/process-1.jpg"
+  challenges: "images/projects/challenge.jpg"   # default: "images/about/process-2.jpg"
+  success: "images/projects/success.jpg"        # default: "images/about/process-3.jpg"
+  testimonial: "images/projects/client.jpg"     # default: "images/team/testimonial1.jpg"
+```
+
+### Blog Sidebar (`content/blog/_index.md` or individual posts)
+
+```yaml
+images:
+  sidebar_thumb_1: "images/blog/thumb1.jpg"  # default: "images/blog/bt-3.jpg"
+  sidebar_thumb_2: "images/blog/thumb2.jpg"  # default: "images/blog/bt-2.jpg"
+  sidebar_thumb_3: "images/blog/thumb3.jpg"  # default: "images/blog/bt-1.jpg"
+```
+
+### Legacy Partials
+
+Images for the standalone partials (case-study, service-2) are set via `images` in the calling page's front matter:
+
+| Key | Partial | Default |
+|---|---|---|
+| `case_step_1` .. `case_step_4` | case-study.html | `images/about/process-3.jpg`, `process-2.jpg`, `process-1.jpg`, `structure_sass.png` |
+| `service_detail_1` .. `service_detail_3` | service-2.html | `images/service/service-1.jpg`, `service-3.jpg`, `service-4.jpg` |
 
 ## Theme Structure
 

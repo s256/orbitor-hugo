@@ -2,10 +2,10 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="{{ "/" | relURL }}">
       {{ if not .IsHome }}
-      <img src="{{ "images/logo-w.png" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid hidden-logo">
-      <img src="{{ "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid mobile-logo">
+      <img src="{{ .Site.Params.logoWhite | default "images/logo-w.png" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid hidden-logo">
+      <img src="{{ .Site.Params.logo | default "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid mobile-logo">
       {{ else }}
-      <img src="{{ "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid">
+      <img src="{{ .Site.Params.logo | default "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid">
       {{ end }}
     </a>
 

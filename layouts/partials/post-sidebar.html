@@ -10,21 +10,21 @@
   <div class="sidebar-widget latest-post mb-3">
     <h5>{{ .Params.labels.latest_posts | default "Latest Posts" }}</h5>
     <div class="media py-3">
-      <a href="#"><img class="mr-4" src="{{ "images/blog/bt-3.jpg" | relURL }}" alt=""></a>
+      <a href="#"><img class="mr-4" src="{{ .Params.images.sidebar_thumb_1 | default "images/blog/bt-3.jpg" | relURL }}" alt=""></a>
       <div class="media-body">
         <span class="text-sm text-muted">03 Mar 2018</span>
         <h6 class="my-2"><a href="#">Thoughtful living in los Angeles</a></h6>
       </div>
     </div>
     <div class="media py-3">
-      <a href="#"><img class="mr-4" src="{{ "images/blog/bt-2.jpg" | relURL }}" alt=""></a>
+      <a href="#"><img class="mr-4" src="{{ .Params.images.sidebar_thumb_2 | default "images/blog/bt-2.jpg" | relURL }}" alt=""></a>
       <div class="media-body">
         <span class="text-sm text-muted">03 Mar 2018</span>
         <h6 class="my-2"><a href="#">Vivamus molestie gravida turpis.</a></h6>
       </div>
     </div>
     <div class="media py-3">
-      <a href="#"><img class="mr-4" src="{{ "images/blog/bt-1.jpg" | relURL }}" alt=""></a>
+      <a href="#"><img class="mr-4" src="{{ .Params.images.sidebar_thumb_3 | default "images/blog/bt-1.jpg" | relURL }}" alt=""></a>
       <div class="media-body">
         <span class="text-sm text-muted">03 Mar 2018</span>
         <h6 class="my-2"><a href="#">Fusce lobortis lorem at ipsum semper sagittis</a></h6>

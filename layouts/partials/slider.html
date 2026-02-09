@@ -1,7 +1,7 @@
 {{ with .Params.slider }}
 <!-- Slider Start -->
-<section class="banner d-flex align-items-center">
-  <div class="banner-img-part"></div>
+<section class="banner d-flex align-items-center" style="background-image: url('{{ .bg_image | default "images/bg/main-banner1.jpg" | relURL }}')">
+  <div class="banner-img-part" style="background-image: url('{{ .banner_img | default "images/bg/bg-half.png" | relURL }}')"></div>
   <div class="container">
     <div class="row">
       <div class="col-lg-10 col-md-12 col-xl-8">

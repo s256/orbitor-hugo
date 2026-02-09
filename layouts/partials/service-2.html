@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="service-img mb-5 mb-lg-0">
-          <img src="{{ "images/service/service-1.jpg" | relURL }}" alt="" class="img-fluid">
+          <img src="{{ .Params.images.service_detail_1 | default "images/service/service-1.jpg" | relURL }}" alt="" class="img-fluid">
         </div>
       </div>
       <div class="col-lg-6">
@@ -26,7 +26,7 @@
         </div>
         <div class="col-lg-6">
           <div class="service-img">
-            <img src="{{ "images/service/service-3.jpg" | relURL }}" alt="" class="img-fluid">
+            <img src="{{ .Params.images.service_detail_2 | default "images/service/service-3.jpg" | relURL }}" alt="" class="img-fluid">
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="service-img mb-5 mb-lg-0">
-          <img src="{{ "images/service/service-4.jpg" | relURL }}" alt="" class="img-fluid">
+          <img src="{{ .Params.images.service_detail_3 | default "images/service/service-4.jpg" | relURL }}" alt="" class="img-fluid">
         </div>
       </div>
       <div class="col-lg-6">

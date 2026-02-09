@@ -15,7 +15,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="case-img ">
-            <img src="{{ "images/about/process-3.jpg" | relURL }}" alt="" class="img-fluid">
+            <img src="{{ .Params.images.case_step_1 | default "images/about/process-3.jpg" | relURL }}" alt="" class="img-fluid">
           </div>
         </div>
         <div class="col-lg-6">
@@ -39,7 +39,7 @@
         </div>
         <div class="col-lg-6  order-1 order-lg-2">
           <div class="case-img">
-            <img src="{{ "images/about/process-2.jpg" | relURL }}" alt="" class="img-fluid">
+            <img src="{{ .Params.images.case_step_2 | default "images/about/process-2.jpg" | relURL }}" alt="" class="img-fluid">
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="case-img">
-            <img src="{{ "images/about/process-1.jpg" | relURL }}" alt="" class="img-fluid">
+            <img src="{{ .Params.images.case_step_3 | default "images/about/process-1.jpg" | relURL }}" alt="" class="img-fluid">
           </div>
         </div>
         <div class="col-lg-6">
@@ -75,7 +75,7 @@
         </div>
         <div class="col-lg-6  order-1 order-lg-2">
           <div class="case-img">
-            <img src="{{ "images/about/structure_sass.png" | relURL }}" alt="" class="img-fluid">
+            <img src="{{ .Params.images.case_step_4 | default "images/about/structure_sass.png" | relURL }}" alt="" class="img-fluid">
           </div>
         </div>
       </div>
