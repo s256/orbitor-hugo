@@ -482,6 +482,11 @@ a:focus {
   font-weight: 600;
 }
 
+.navbar-brand img {
+  max-height: 100px;
+  width: auto;
+}
+
 .dropdown-menu {
   visibility: hidden;
   filter: alpha(opacity=0);
