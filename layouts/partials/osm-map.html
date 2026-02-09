@@ -1,0 +1,10 @@
+{{/* OpenStreetMap embed iframe.
+     Expects the map object from front matter (.lat, .lng, .zoom, optional .marker) as context. */}}
+{{ $zoom := .zoom | default 13 }}
+{{ $delta := div 0.5 (math.Pow 2 (sub $zoom 10)) }}
+{{ $south := sub .lat $delta }}
+{{ $north := add .lat $delta }}
+{{ $west := sub .lng $delta }}
+{{ $east := add .lng $delta }}
+{{ $src := printf "https://www.openstreetmap.org/export/embed.html?bbox=%v,%v,%v,%v&layer=mapnik&marker=%v,%v" $west $south $east $north .lat .lng }}
+<iframe src="{{ $src }}" style="width:100%;height:100%;border:0" loading="lazy" referrerpolicy="no-referrer"></iframe>

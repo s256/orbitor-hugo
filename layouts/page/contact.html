@@ -1,105 +1,151 @@
 {{ define "main" }}
-  {{ partial "page-title.html" . }}
+{{ partial "page-title.html" . }}
 
-  <!-- contact form start -->
-  <section class="contact-form-wrap section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-          {{ with .Params.form }}
-          <span class="text-color">{{ .subtitle }}</span>
-          <h3 class="text-md mb-5">{{ .title }}</h3>
+<section class="contact-form-wrap section">
+  <div class="container">
+    {{ if .Params.form }}
+    {{/* --- Layout with contact form --- */}}
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        {{ with .Params.form }}
+        <span class="text-color">{{ .subtitle }}</span>
+        <h3 class="text-md mb-5">{{ .title }}</h3>
 
-          <div class="row">
-            <div class="col-lg-8">
-              <form id="contact-form" class="contact__form " method="post" action="mail.php">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="alert alert-success contact__msg" style="display: none" role="alert">
-                      {{ .success_message }}
-                    </div>
+        <div class="row">
+          <div class="col-lg-8">
+            <form id="contact-form" class="contact__form " method="post" action="mail.php">
+              <div class="row">
+                <div class="col-12">
+                  <div class="alert alert-success contact__msg" style="display: none" role="alert">
+                    {{ .success_message }}
                   </div>
                 </div>
-
-                <div class="form-group">
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    {{ range .options }}
-                    <option>{{ . }}</option>
-                    {{ end }}
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <input name="subject" id="subject" type="text" class="form-control" placeholder="Your Subject">
-                </div>
-                <div class="form-group">
-                  <input name="name" id="name" type="text" class="form-control" placeholder="Your Name">
-                </div>
-                <div class="form-group">
-                  <input name="email" id="email" type="email" class="form-control" placeholder="Email Address">
-                </div>
-                <div class="form-group-2 mb-4">
-                  <textarea name="message" id="message" class="form-control" rows="4" placeholder="Your Message"></textarea>
-                </div>
-                <button class="btn btn-main" name="submit" type="submit">Send Message</button>
-              </form>
-            </div>
-
-            {{ with $.Params.sidebar }}
-            <div class="col-lg-4">
-              <div class="short-info mt-5 mt-lg-0">
-                <ul class="list-unstyled">
-                  <li>
-                    <h5>Call Us</h5>
-                    {{ .phone }}
-                  </li>
-                  <li>
-                    <h5>Email Us</h5>
-                    {{ .email }}
-                  </li>
-                  <li>
-                    <h5>Location Map</h5>
-                    {{ .address }}
-                  </li>
-                </ul>
-
-                <ul class="social-icons list-inline mt-5">
-                  {{ range .socials }}
-                  <li class="list-inline-item">
-                    <a href="{{ .url }}"><i class="{{ .icon }}"></i></a>
-                  </li>
-                  {{ end }}
-                </ul>
               </div>
+
+              <div class="form-group">
+                <select class="form-control" id="exampleFormControlSelect1">
+                  {{ range .options }}
+                  <option>{{ . }}</option>
+                  {{ end }}
+                </select>
+              </div>
+
+              <div class="form-group">
+                <input name="subject" id="subject" type="text" class="form-control" placeholder="Your Subject">
+              </div>
+              <div class="form-group">
+                <input name="name" id="name" type="text" class="form-control" placeholder="Your Name">
+              </div>
+              <div class="form-group">
+                <input name="email" id="email" type="email" class="form-control" placeholder="Email Address">
+              </div>
+              <div class="form-group-2 mb-4">
+                <textarea name="message" id="message" class="form-control" rows="4"
+                  placeholder="Your Message"></textarea>
+              </div>
+              <button class="btn btn-main" name="submit" type="submit">Send Message</button>
+            </form>
+          </div>
+
+          {{ with $.Params.sidebar }}
+          <div class="col-lg-4">
+            <div class="short-info mt-5 mt-lg-0">
+              <ul class="list-unstyled">
+                <li>
+                  <h5>Call Us</h5>
+                  {{ .phone }}
+                </li>
+                <li>
+                  <h5>Email Us</h5>
+                  {{ .email }}
+                </li>
+                <li>
+                  <h5>Location Map</h5>
+                  {{ .address }}
+                </li>
+              </ul>
+
+              <ul class="social-icons list-inline mt-5">
+                {{ range .socials }}
+                <li class="list-inline-item">
+                  <a href="{{ .url }}"><i class="{{ .icon }}"></i></a>
+                </li>
+                {{ end }}
+              </ul>
             </div>
-            {{ end }}
           </div>
           {{ end }}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="google-map mt-90 mb-5">
-            <div id="map"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        {{ range .Params.offices }}
-        <div class="col-lg-4 col-md-6">
-          <div class="contact-content pl-lg-5 mt-5 mt-lg-0 mb-5 mb-lg-0">
-            <h4 class="mb-4">{{ .name }}</h4>
-            <ul class="address-block list-unstyled">
-              <li><i class="ti-location-pin mr-3"></i>{{ .address }}</li>
-              <li><i class="ti-email mr-3"></i>Email: {{ .email }}</li>
-              <li><i class="ti-mobile mr-3"></i>Phone:{{ .phone }}</li>
-            </ul>
-          </div>
         </div>
         {{ end }}
       </div>
     </div>
-  </section>
+
+    {{ with .Params.map }}
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="google-map mt-90 mb-5">
+          {{ partial "osm-map.html" . }}
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+    <div class="row">
+      {{ range .Params.offices }}
+      <div class="col-lg-4 col-md-6">
+        <div class="contact-content pl-lg-5 mt-5 mt-lg-0 mb-5 mb-lg-0">
+          <h4 class="mb-4">{{ .name }}</h4>
+          <ul class="address-block list-unstyled">
+            <li><i class="ti-location-pin mr-3"></i>{{ .address }}</li>
+            <li><i class="ti-email mr-3"></i>Email: <a href="mailto:{{ .email }}">{{ .email }}</a></li>
+            <li><i class="ti-mobile mr-3"></i>Phone: <a href="tel:{{ .phone }}">{{ .phone }}</a></li>
+          </ul>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    {{ else }}
+    {{/* --- Layout without form: map + sidebar side by side, offices hidden --- */}}
+    <div class="row">
+      {{ with .Params.map }}
+      <div class="col-lg-8 col-md-7">
+        <div class="google-map">
+          {{ partial "osm-map.html" . }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{ with .Params.sidebar }}
+      <div class="col-lg-4 col-md-5">
+        <div class="short-info mt-5 mt-md-0">
+          <ul class="list-unstyled">
+            <li>
+              <h5>Call Us</h5>
+              <a href="tel:{{ .phone }}">{{ .phone }}</a>
+            </li>
+            <li>
+              <h5>Email Us</h5>
+              <a href="mailto:{{ .email }}">{{ .email }}
+            </li>
+            <li>
+              <h5>Location Map</h5>
+              {{ .address }}
+            </li>
+          </ul>
+
+          <ul class="social-icons list-inline mt-5">
+            {{ range .socials }}
+            <li class="list-inline-item">
+              <a href="{{ .url }}"><i class="{{ .icon }}"></i></a>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
 {{ end }}
