@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg py-4 navigation header-padding {{ if not .IsHome }}nav-text-white{{ end }}" id="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ "/" | relURL }}">
+      {{ if not .IsHome }}
+      <img src="{{ "images/logo-w.png" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid hidden-logo">
+      <img src="{{ "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid mobile-logo">
+      {{ else }}
+      <img src="{{ "images/logo.png" | relURL }}" alt="{{ .Site.Title }}" class="img-fluid">
+      {{ end }}
+    </a>
+
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="fa fa-bars"></span>
+    </button>
+
+    <div class="collapse navbar-collapse text-center" id="navbarsExample09">
+      <ul class="navbar-nav m-auto">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+          {{ if .HasChildren }}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown{{ .Name }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }}</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown{{ .Name }}">
+              {{ range .Children }}
+              <li><a class="dropdown-item" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+              {{ end }}
+            </ul>
+          </li>
+          {{ else }}
+          <li class="nav-item{{ if $currentPage.IsMenuCurrent "main" . }} active{{ end }}">
+            <a class="nav-link" href="{{ .URL | relURL }}">{{ .Name }}{{ if $currentPage.IsMenuCurrent "main" . }} <span class="sr-only">(current)</span>{{ end }}</a>
+          </li>
+          {{ end }}
+        {{ end }}
+      </ul>
+
+      <a href="{{ "contact/" | relURL }}" class="btn {{ if not .IsHome }}btn-solid-white{{ else }}btn-solid-border{{ end }} d-none d-lg-block">Get an estimate <i class="fa fa-angle-right ml-2"></i></a>
+    </div>
+  </div>
+</nav>

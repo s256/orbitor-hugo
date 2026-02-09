@@ -1,0 +1,47 @@
+{{ define "main" }}
+  {{ partial "page-title.html" . }}
+
+  <section class="section blog-wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="row">
+            <div class="col-lg-12 mb-5">
+              <div class="single-blog-item">
+                {{ with .Params.image }}
+                <img src="{{ . | relURL }}" alt="" class="img-fluid rounded">
+                {{ end }}
+
+                <div class="blog-item-content mt-4">
+                  <h2 class="mt-3 mb-3 text-md"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+                  <div class="blog-item-meta mb-5">
+                    {{ with .Params.category }}
+                    <span class="text-muted text-capitalize mr-3"><i class="ti-pencil-alt mr-2"></i>{{ . }}</span>
+                    {{ end }}
+                    <span class="text-muted text-capitalize mr-3"><i class="ti-comment mr-2"></i>{{ .Params.comments | default 0 }} Comments</span>
+                    <span class="text-black text-capitalize mr-3"><i class="ti-time mr-1"></i> {{ .Date.Format "2 January" }}</span>
+                  </div>
+
+                  {{ .Content }}
+
+                  {{ with .Params.tags }}
+                  <div class="tag-option mt-5 clearfix">
+                    <ul class="float-left list-inline">
+                      {{ range . }}
+                      <li class="list-inline-item"><a href="#" rel="tag">{{ . }} /</a></li>
+                      {{ end }}
+                    </ul>
+                  </div>
+                  {{ end }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          {{ partial "post-sidebar.html" . }}
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

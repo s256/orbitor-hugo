@@ -1,0 +1,35 @@
+{{ with .Params.portfolio }}
+<!-- section portfolio start -->
+<section class="section portfolio pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="heading">
+          <h2 class="mb-4">{{ .title }}</h2>
+          <p>{{ .description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row portfolio-gallery">
+      {{ range where $.Site.RegularPages "Section" "project" }}
+      <div class="col-lg-4 col-md-6">
+        <div class="portflio-item position-relative mb-4">
+          <a href="{{ .Permalink }}">
+            <img src="{{ .Params.thumbnail | default .Params.image | relURL }}" alt="" class="img-fluid w-100">
+            <div class="overlay-item"><i class="ti-link"></i></div>
+            <div class="portfolio-item-content">
+              <h3 class="mb-0 text-white">{{ .Title }}</h3>
+              <p class="text-white-50">{{ .Params.category | default "Web Development" }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!-- section portfolio END -->
+{{ end }}

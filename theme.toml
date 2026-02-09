@@ -1,0 +1,10 @@
+name = "Orbitor"
+license = "MIT"
+licenselink = "https://github.com/themefisher/orbitor-bootstrap/blob/master/LICENSE"
+description = "Orbitor - Bootstrap Agency Hugo Theme"
+homepage = "https://github.com/themefisher/"
+min_version = "0.100.0"
+
+[author]
+  name = "Themefisher"
+  homepage = "https://themefisher.com/"

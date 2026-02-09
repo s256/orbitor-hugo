@@ -1,0 +1,43 @@
+{{ define "main" }}
+  {{ partial "page-title.html" . }}
+
+  {{ with .Params.pricing }}
+  <section class="section pricing">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="heading text-center mb-50">
+            <h2 class="">{{ .title }}</h2>
+            <p class="">{{ .description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        {{ range .plans }}
+        <div class="col-lg-4">
+          <div class="pricing-block card text-center{{ if .featured }} featured{{ end }}">
+            <div class="price-header">
+              <span class="text-uppercase letter-spacing h5">{{ .name }}</span>
+              <h2>{{ .price }}</h2>
+              <h6{{ if not .featured }} class="text-muted"{{ end }}>{{ .period }}</h6>
+            </div>
+            <div class="price-body">
+              <ul class="list-unstyled mb-0">
+                {{ range .features }}
+                <li>{{ . }}</li>
+                {{ end }}
+              </ul>
+            </div>
+            <div class="price-footer">
+              <a href="#" class="btn btn-main">{{ .button_text }}</a>
+            </div>
+            <a href="#" class="text-underline">{{ .footer_text }}</a>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+{{ end }}

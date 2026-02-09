@@ -1,0 +1,12 @@
+{{ define "main" }}
+  {{ partial "page-title.html" . }}
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          {{ .Content }}
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

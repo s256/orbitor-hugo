@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <meta name="author" content="{{ .Site.Params.author }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="{{ "images/favicon.ico" | relURL }}">
+
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="{{ "plugins/bootstrap/css/bootstrap.min.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "plugins/themify/css/themify-icons.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "plugins/fontawesome/css/all.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "plugins/magnific-popup/dist/magnific-popup.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "plugins/modal-video/modal-video.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "plugins/animate-css/animate.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick-theme.css" | relURL }}">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+
+<body>
+  {{ block "nav" . }}
+    {{ partial "navigation.html" . }}
+  {{ end }}
+
+  {{ block "main" . }}{{ end }}
+
+  {{ partial "site-footer.html" . }}
+
+  <!-- Essential Scripts -->
+  <script src="{{ "plugins/jquery/jquery.js" | relURL }}"></script>
+  <script src="{{ "js/contact.js" | relURL }}"></script>
+  <script src="{{ "plugins/bootstrap/js/popper.js" | relURL }}"></script>
+  <script src="{{ "plugins/bootstrap/js/bootstrap.min.js" | relURL }}"></script>
+  <script src="{{ "plugins/magnific-popup/dist/jquery.magnific-popup.min.js" | relURL }}"></script>
+  <script src="{{ "plugins/slick-carousel/slick/slick.min.js" | relURL }}"></script>
+  <script src="{{ "plugins/counterup/jquery.waypoints.min.js" | relURL }}"></script>
+  <script src="{{ "plugins/counterup/jquery.counterup.min.js" | relURL }}"></script>
+  <script src="{{ "plugins/modal-video/modal-video.js" | relURL }}"></script>
+  <script src="{{ "plugins/google-map/map.js" | relURL }}"></script>
+  <script src="{{ "js/script.js" | relURL }}"></script>
+</body>
+</html>

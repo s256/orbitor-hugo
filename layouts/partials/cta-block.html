@@ -1,0 +1,15 @@
+{{ with .Params.cta }}
+<section class="section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="cta-content bg-white p-5 rounded">
+          <h3 class="mb-4">{{ .title }}{{ with .title_highlight }}<span class="text-color-primary"> {{ . }}</span>{{ end }} </h3>
+          <p class="mb-30">{{ .description }}</p>
+          <a href="{{ .button_link | relURL }}" class="btn btn-main">{{ .button_text }}<i class="fa fa-angle-right ml-2"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

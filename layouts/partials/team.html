@@ -1,0 +1,26 @@
+{{ with .Site.Data.team }}
+<section class="section team">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="heading text-center mb-50">
+          <h2 class="mb-4">{{ .heading }}</h2>
+          <p>{{ .description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      {{ range .members }}
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="team-block mb-5 mb-lg-0">
+          <img src="{{ .image | relURL }}" alt="" class="img-fluid w-100">
+          <h4 class="mt-4 mb-0">{{ .name }}</h4>
+          <p>{{ .role }}</p>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
