@@ -52,15 +52,15 @@
             <div class="short-info mt-5 mt-lg-0">
               <ul class="list-unstyled">
                 <li>
-                  <h5>Call Us</h5>
+                  <h5>{{ .labels.phone | default "Call Us" }}</h5>
                   {{ .phone }}
                 </li>
                 <li>
-                  <h5>Email Us</h5>
+                  <h5>{{ .labels.email | default "Email Us" }}</h5>
                   {{ .email }}
                 </li>
                 <li>
-                  <h5>Location Map</h5>
+                  <h5>{{ .labels.address | default "Location Map" }}</h5>
                   {{ .address }}
                 </li>
               </ul>
@@ -121,15 +121,15 @@
         <div class="short-info mt-5 mt-md-0">
           <ul class="list-unstyled">
             <li>
-              <h5>Call Us</h5>
+              <h5>{{ .labels.phone | default "Call Us" }}</h5>
               <a href="tel:{{ .phone }}">{{ .phone }}</a>
             </li>
             <li>
-              <h5>Email Us</h5>
+              <h5>{{ .labels.email | default "Email Us" }}</h5>
               <a href="mailto:{{ .email }}">{{ .email }}
             </li>
             <li>
-              <h5>Location Map</h5>
+              <h5>{{ .labels.address | default "Location Map" }}</h5>
               {{ .address }}
             </li>
           </ul>

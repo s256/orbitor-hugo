@@ -1,6 +1,6 @@
 <div class="sidebar-wrap pl-lg-4 mt-5 mt-lg-0">
   <div class="sidebar-widget search mb-3">
-    <h5>Search Here</h5>
+    <h5>{{ .Params.labels.search | default "Search Here" }}</h5>
     <form action="#" class="search-form">
       <input type="text" class="form-control" placeholder="search">
       <i class="ti-search"></i>
@@ -8,7 +8,7 @@
   </div>
 
   <div class="sidebar-widget latest-post mb-3">
-    <h5>Latest Posts</h5>
+    <h5>{{ .Params.labels.latest_posts | default "Latest Posts" }}</h5>
     <div class="media py-3">
       <a href="#"><img class="mr-4" src="{{ "images/blog/bt-3.jpg" | relURL }}" alt=""></a>
       <div class="media-body">
@@ -33,7 +33,7 @@
   </div>
 
   <div class="sidebar-widget category mb-3">
-    <h5 class="mb-4">Categories</h5>
+    <h5 class="mb-4">{{ .Params.labels.categories | default "Categories" }}</h5>
     <ul class="list-unstyled">
       <li class="align-items-center"><a href="#">Innovation</a><span>(14)</span></li>
       <li class="align-items-center"><a href="#">Software</a><span>(2)</span></li>
@@ -43,7 +43,7 @@
   </div>
 
   <div class="sidebar-widget tags mb-3">
-    <h5 class="mb-4">Tags</h5>
+    <h5 class="mb-4">{{ .Params.labels.tags | default "Tags" }}</h5>
     <a href="#">Web</a>
     <a href="#">agency</a>
     <a href="#">company</a>

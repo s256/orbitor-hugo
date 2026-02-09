@@ -12,9 +12,10 @@ Built with Bootstrap 4, this theme is suitable for software companies, digital a
 - Services page with timeline and service grid
 - Portfolio/project pages with detail view
 - Blog with sidebar
-- Contact page with form and office locations
+- Contact page with optional form, OpenStreetMap embed, and office locations
 - Pricing page
 - All content driven by front matter and data files (no hardcoded text in layouts)
+- Overridable heading labels for localization (see [Customizing Labels](#customizing-labels))
 
 ## Requirements
 
@@ -76,7 +77,7 @@ All website content lives in markdown files and YAML data files, not in the them
 | `content/_index.md` | Homepage | `slider`, `features`, `process`, `cta`, `portfolio` |
 | `content/about.md` | About | `feature_heading`, `feature_counters`, `video`, `awards` |
 | `content/service.md` | Services | `services_detail`, `case_study`, `services_grid`, `cta` |
-| `content/contact.md` | Contact | `form`, `sidebar`, `offices` |
+| `content/contact.md` | Contact | `form` (optional), `map`, `sidebar`, `offices` |
 | `content/pricing.md` | Pricing | `pricing` (plans array) |
 
 Pages with custom layouts need `type: "page"` and `layout: "<name>"` in their front matter.
@@ -95,7 +96,28 @@ Pages with custom layouts need `type: "page"` and `layout: "<name>"` in their fr
 | `data/testimonials.yml` | Testimonial heading, description, and items |
 | `data/team.yml` | Team section heading and member list |
 | `data/counters.yml` | Counter statistics |
-| `data/footer.yml` | Footer brand, links, contact info, socials, copyright |
+| `data/footer.yml` | Footer brand, links, contact info, socials, copyright, labels |
+
+### Contact Page
+
+The contact page supports two layouts controlled by the `form` front matter key:
+
+- **With `form`:** Shows the contact form alongside the sidebar, map below, and office locations at the bottom.
+- **Without `form`:** Shows the map and sidebar side by side (2/3 + 1/3). The offices section is hidden.
+
+#### Map
+
+The map uses a privacy-friendly OpenStreetMap embed (iframe, no external JS/CSS). Configure it via the `map` key:
+
+```yaml
+map:
+  lat: 51.1657
+  lng: 10.4515
+  zoom: 13
+  marker: "Your Company Name"
+```
+
+Remove the `map` key entirely to hide the map.
 
 ## Configuration
 
@@ -139,6 +161,69 @@ Navigation is managed via Hugo menus. Dropdown menus are supported:
       weight = 1
 ```
 
+## Customizing Labels
+
+All heading text in the theme can be overridden via a `labels` map in the corresponding data source. If no override is provided, the built-in English default is used. This makes it straightforward to localize the theme or adjust wording without touching any template files.
+
+### Contact Page (`content/contact.md`)
+
+Labels for the sidebar live inside the `sidebar` front matter block:
+
+```yaml
+sidebar:
+  phone: "+49 123 456"
+  email: "info@example.de"
+  address: "Musterstraße 1, Berlin"
+  labels:
+    phone: "Rufen Sie uns an"    # default: "Call Us"
+    email: "Schreiben Sie uns"   # default: "Email Us"
+    address: "Standort"          # default: "Location Map"
+```
+
+### Footer (`data/footer.yml`)
+
+```yaml
+labels:
+  company: "Unternehmen"   # default: "Company"
+  support: "Hilfe"         # default: "Support"
+  contact: "Kontakt"       # default: "Get in Touch"
+```
+
+### Blog Pages (`content/blog/_index.md` or individual posts)
+
+Labels for the sidebar sections:
+
+```yaml
+labels:
+  search: "Suche"                  # default: "Search Here"
+  latest_posts: "Neueste Beiträge" # default: "Latest Posts"
+  categories: "Kategorien"         # default: "Categories"
+  tags: "Schlagwörter"             # default: "Tags"
+```
+
+### Project Pages (`content/project/my-project.md`)
+
+```yaml
+labels:
+  strategies: "Unsere Strategien"      # default: "Our Strategies"
+  challenges: "Unsere Herausforderungen" # default: "Our Challenges"
+  success: "Unser Erfolg"             # default: "Our Success"
+  testimonial: "Kundenstimme"         # default: "Testimonial"
+```
+
+### Legacy Partials
+
+The following labels apply to the original standalone partials (service, case-study, service-2, portfolio-page, pricing). These are set via `labels` in the page front matter that calls the partial:
+
+| Key | Partial | Default |
+|---|---|---|
+| `services_heading` | service.html | "Industry Leading Managed Services & Staffing Solutions" |
+| `case_study_heading` | case-study.html | "How we works" |
+| `case_step_1` .. `case_step_4` | case-study.html | "Competitor Research", "Making Functional Strategy", "Project Outline", "Final Delivery" |
+| `service_detail_1` .. `service_detail_3` | service-2.html | "Custom Software development", "Software Maintenance", "Web App Development" |
+| `portfolio_heading` | portfolio-page.html | "Let's Check Some Works" |
+| `pricing_heading` | pricing.html | "Our pricing" |
+
 ## Theme Structure
 
 ```
@@ -174,6 +259,7 @@ layouts/
     team.html            # Team members
     post-sidebar.html    # Blog sidebar
     site-footer.html     # Site footer
+    osm-map.html         # OpenStreetMap embed iframe
 ```
 
 ## Credits
