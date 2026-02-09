@@ -137,6 +137,19 @@ theme = "orbitor"
   logoWhite = "images/logo-w.png"
 ```
 
+### Colors
+
+Override the theme colors in `hugo.toml`. All three are optional and independent:
+
+```toml
+[params.colors]
+  accent = "#2E8B57"       # buttons, links, highlights (default: "#FF715B")
+  secondary = "#f0f4ed"    # section backgrounds using bg-light/bg-gray (default: "#eff0f3")
+  footer = "#1a1a1a"       # footer background (default: "#000")
+```
+
+If `[params.colors]` is omitted entirely, the built-in defaults are used unchanged.
+
 ### Navigation
 
 Navigation is managed via Hugo menus. Dropdown menus are supported:

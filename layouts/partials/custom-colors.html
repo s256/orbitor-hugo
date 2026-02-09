@@ -1,0 +1,67 @@
+{{ with .Site.Params.colors }}
+<style>
+  {{ with .accent }}
+  .navbar-toggle .icon-bar,
+  .btn-main,
+  .btn-main-2,
+  .btn-solid-border:hover,
+  .btn-white:hover,
+  .bg-primary,
+  .dropdown-item:hover,
+  .counter,
+  .counter--style,
+  .nav-links .page-numbers:hover,
+  .sidebar-widget.tags a:hover { background: {{ . }}; }
+
+  .btn-main,
+  .btn-main-2,
+  .btn-white:hover { border-color: {{ . }}; }
+
+  .btn-main:hover,
+  .btn-main-2:hover { color: {{ . }}; border-color: {{ . }}; }
+
+  .btn-solid-border { border-color: {{ . }}; }
+  .btn-solid-border:hover { border-color: {{ . }}; }
+
+  input[type=text]:focus,
+  input[type=password]:focus,
+  input[type=email]:focus,
+  input[type=tel]:focus,
+  .form-control:focus,
+  .comment-reply-form textarea:focus { border-color: {{ . }}; }
+
+  .subtitle,
+  .text-color,
+  .text-color-primary,
+  a:focus,
+  a:hover,
+  .about-item a,
+  .icon-block i,
+  .feature-list ul li i,
+  .video-icon,
+  .service-item-list i,
+  .post-comments .comment-author a,
+  .post-comments .comment-button,
+  .post-comments .comment-button:hover,
+  .blog-quote blockquote,
+  .next-prev a:hover,
+  .social-profile ul li a i:hover,
+  .comment-wrap .media .media-heading a,
+  .sidebar-widget.category ul li a:hover,
+  .logo span,
+  .widget-contact h6 i { color: {{ . }}; }
+
+  .pricing-block { border-top-color: {{ . }}; }
+  blockquote { border-left-color: {{ . }}; }
+  {{ end }}
+
+  {{ with .secondary }}
+  .bg-light,
+  .bg-gray { background: {{ . }} !important; }
+  {{ end }}
+
+  {{ with .footer }}
+  .footer { background: {{ . }}; }
+  {{ end }}
+</style>
+{{ end }}
