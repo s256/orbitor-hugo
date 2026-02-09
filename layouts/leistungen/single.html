@@ -30,7 +30,7 @@
           <div class="row">
             {{ range . }}
             <div class="col-md-4 col-6 mb-4">
-              <a href="{{ . | relURL }}" class="popup-gallery">
+              <a href="{{ . | relURL }}" class="glightbox" data-gallery="service-gallery">
                 <img src="{{ . | relURL }}" alt="" class="img-fluid rounded">
               </a>
             </div>
