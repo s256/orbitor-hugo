@@ -134,4 +134,38 @@
     delay: 10,
     time: 1000,
   });
+
+  // Rybbit event tracking
+  function rybbitEvent(name, props) {
+    if (window.rybbit && typeof window.rybbit.event === "function") {
+      window.rybbit.event(name, props);
+    }
+  }
+
+  // Phone clicks
+  $(document).on("click", 'a[href^="tel:"]', function () {
+    rybbitEvent("phone_click", { phone: this.href.replace("tel:", "") });
+  });
+
+  // Email clicks
+  $(document).on("click", 'a[href^="mailto:"]', function () {
+    rybbitEvent("email_click", { email: this.href.replace("mailto:", "") });
+  });
+
+  // CTA button clicks (navbar + page CTAs)
+  $(document).on("click", ".btn-main, .btn-solid-border, .btn-solid-white", function () {
+    var label = $(this).text().trim();
+    var href = $(this).attr("href") || "";
+    if (href && !href.startsWith("tel:") && !href.startsWith("mailto:")) {
+      rybbitEvent("cta_click", { label: label, href: href, page: window.location.pathname });
+    }
+  });
+
+  // Social media / outbound link clicks
+  $(document).on("click", 'a[target="_blank"], .footer-socials a', function () {
+    var href = $(this).attr("href") || "";
+    if (href.startsWith("http")) {
+      rybbitEvent("outbound_click", { url: href });
+    }
+  });
 })(jQuery);
