@@ -4,6 +4,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
+          {{ with .Params.subtitle }}
+          <p class="text-color lead mb-4">{{ . }}</p>
+          {{ end }}
           {{ .Content }}
           <div class="mt-5">
             <a href="{{ "glossar/" | relURL }}" class="btn btn-main">Zurück zum Glossar</a>
