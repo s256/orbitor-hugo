@@ -27,6 +27,10 @@
 
   <!-- Custom color overrides -->
   {{ partial "custom-colors.html" . }}
+
+  {{ with .Site.Params.rybbit_site_id }}
+  <script defer data-domain="{{ replace (replace (replace site.BaseURL `https://` ``) `http://` ``) `/` `` | chomp }}" src="{{ ($.Site.Params.rybbit_host | default ``) | safeURL }}/api/script.js" data-site-id="{{ . }}" data-tracking-errors="true" async></script>
+  {{ end }}
 </head>
 
 <body>
