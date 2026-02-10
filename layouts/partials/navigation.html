@@ -5,6 +5,44 @@
       margin-top: 0;
     }
   }
+  @media (max-width: 991px) {
+    .navbar .dropdown-toggle::after {
+      display: inline-block;
+      margin-left: 0.4em;
+      vertical-align: middle;
+      content: "";
+      border-top: 0.3em solid;
+      border-right: 0.3em solid transparent;
+      border-bottom: 0;
+      border-left: 0.3em solid transparent;
+      transition: transform 0.2s ease;
+    }
+    .navbar .dropdown.open > .dropdown-toggle::after {
+      transform: rotate(180deg);
+    }
+    .navbar .dropdown-menu {
+      position: static;
+      float: none;
+      width: 100%;
+      border: none;
+      box-shadow: none;
+      background: transparent;
+      padding: 0;
+      margin: 0;
+      visibility: visible;
+      opacity: 1;
+      display: none;
+      transition: none;
+    }
+    .navbar .dropdown.open > .dropdown-menu {
+      display: block;
+    }
+    .navbar .dropdown-menu .dropdown-item {
+      color: #111;
+      padding: 0.5rem 1.5rem 0.5rem 2rem;
+      font-size: 13px;
+    }
+  }
 </style>
 <nav class="navbar navbar-expand-lg py-4 navigation header-padding {{ if not .IsHome }}nav-text-white{{ end }}" id="navbar">
   <div class="container-fluid">

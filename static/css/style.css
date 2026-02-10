@@ -507,6 +507,8 @@ a:focus {
   display: none;
 }
 
+
+
 .dropdown:hover .dropdown-menu {
   visibility: visible;
   transition: all 0.45s ease 0s;
@@ -553,12 +555,6 @@ ul.dropdown-menu li {
     color: #111;
   }
 
-  .dropdown-menu {
-    display: none;
-    width: 100%;
-    text-align: center;
-  }
-
   h2,
   .h2 {
     font-size: 1.3rem;
@@ -592,12 +588,6 @@ ul.dropdown-menu li {
     color: #111;
   }
 
-  .dropdown-menu {
-    display: none;
-    width: 100%;
-    text-align: center;
-  }
-
   .header-padding {
     padding: 0px 30px;
   }
@@ -614,12 +604,6 @@ ul.dropdown-menu li {
 
   .navbar-toggler {
     color: #111;
-  }
-
-  .dropdown-menu {
-    display: none;
-    width: 100%;
-    text-align: center;
   }
 
   #navbar.nav-text-white .mobile-logo {
@@ -654,12 +638,6 @@ ul.dropdown-menu li {
 
   .navbar-toggler {
     color: #111;
-  }
-
-  .dropdown-menu {
-    display: none;
-    width: 100%;
-    text-align: center;
   }
 
   .header-padding {

@@ -135,6 +135,30 @@
     time: 1000,
   });
 
+  // Mobile dropdown: first tap expands, second tap navigates
+  $(document).on("click", ".nav-item.dropdown > .dropdown-toggle", function (e) {
+    if ($(window).width() < 992) {
+      var $parent = $(this).parent();
+      if (!$parent.hasClass("open")) {
+        e.preventDefault();
+        $(".nav-item.dropdown.open").removeClass("open");
+        $parent.addClass("open");
+      }
+    }
+  });
+
+  // Close mobile dropdowns when tapping outside
+  $(document).on("click", function (e) {
+    if ($(window).width() < 992 && !$(e.target).closest(".nav-item.dropdown").length) {
+      $(".nav-item.dropdown.open").removeClass("open");
+    }
+  });
+
+  // Reset when navbar collapses
+  $("#navbarsExample09").on("hide.bs.collapse", function () {
+    $(".nav-item.dropdown.open").removeClass("open");
+  });
+
   // Rybbit event tracking
   function rybbitEvent(name, props) {
     if (window.rybbit && typeof window.rybbit.event === "function") {
