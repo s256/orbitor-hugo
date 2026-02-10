@@ -7,9 +7,8 @@
       <div class="col-lg-8">
         <div class="service-content">
           {{ with .Params.subtitle }}
-          <span class="text-color d-block mb-2">{{ . }}</span>
+          <p class="text-color lead mb-4">{{ . }}</p>
           {{ end }}
-          <h2 class="mb-4">{{ .Title }}</h2>
 
           {{ .Content }}
 
@@ -26,7 +25,7 @@
 
         {{ with .Params.gallery }}
         <div class="service-gallery mt-5">
-          <h4 class="mb-4">{{ $.Params.labels.gallery | default "Bildergalerie" }}</h4>
+          <h2 class="mb-4">{{ $.Params.labels.gallery | default "Bildergalerie" }}</h2>
           <div class="row">
             {{ range . }}
             <div class="col-md-4 col-6 mb-4">
@@ -49,7 +48,7 @@
           {{ end }}
 
           <div class="sidebar-widget mb-4">
-            <h5 class="mb-3">{{ .Params.labels.all_services | default "Alle Leistungen" }}</h5>
+            <h3 class="mb-3 h5">{{ .Params.labels.all_services | default "Alle Leistungen" }}</h3>
             <ul class="list-unstyled">
               {{ range where .Site.RegularPages "Section" "leistungen" }}
               <li class="mb-2{{ if eq $.Permalink .Permalink }} font-weight-bold{{ end }}">
@@ -62,7 +61,7 @@
           </div>
 
           <div class="sidebar-widget bg-light p-4 rounded">
-            <h5 class="mb-3">{{ .Params.labels.contact_cta | default "Projekt besprechen?" }}</h5>
+            <h3 class="mb-3 h5">{{ .Params.labels.contact_cta | default "Projekt besprechen?" }}</h3>
             <p>{{ .Params.labels.contact_text | default "Sprechen Sie uns an. Wir beraten Sie gerne persönlich." }}</p>
             <a href="{{ "kontakt/" | relURL }}" class="btn btn-main btn-block">{{ .Params.labels.contact_button | default "Kontakt aufnehmen" }}</a>
           </div>
