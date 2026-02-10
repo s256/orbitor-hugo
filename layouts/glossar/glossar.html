@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{ partial "page-title.html" . }}
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <h2 class="mb-3">Glossar: Informatives zu</h2>
+        <p class="lead mb-5">Fachwerksanierung - Umbau - Energetische Sanierung</p>
+
+        {{ .Content }}
+
+        <div class="row">
+          {{ range .Pages.ByTitle }}
+          <div class="col-md-6 mb-3">
+            <a href="{{ .Permalink }}" class="d-block p-3 rounded" style="background:#f8f8f8;transition:background .2s;">
+              <h5 class="mb-1 text-color">{{ .Title }}</h5>
+              <p class="mb-0 text-muted" style="font-size:.9rem;">{{ .Description }}</p>
+            </a>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

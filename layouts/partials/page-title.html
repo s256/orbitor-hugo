@@ -8,8 +8,12 @@
 
           <ul class="list-inline breadcumb-nav">
             <li class="list-inline-item"><a href="{{ "/" | relURL }}" class="text-white">Start</a></li>
+            {{ if .Parent }}{{ if not .Parent.IsHome }}
             <li class="list-inline-item"><span class="text-white">/</span></li>
-            <li class="list-inline-item"><a href="#" class="text-white-50">{{ .Params.description | default .Title }}</a></li>
+            <li class="list-inline-item"><a href="{{ .Parent.Permalink }}" class="text-white">{{ .Parent.Title }}</a></li>
+            {{ end }}{{ end }}
+            <li class="list-inline-item"><span class="text-white">/</span></li>
+            <li class="list-inline-item"><span class="text-white-50">{{ .Title }}</span></li>
           </ul>
         </div>
       </div>
