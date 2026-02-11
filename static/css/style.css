@@ -310,7 +310,7 @@ input[type=tel]:focus {
 }
 
 .text-lg {
-  font-size: 3.75rem;
+  font-size: clamp(1.75rem, 4vw + 1rem, 3.75rem);
 }
 
 .no-spacing {
@@ -863,7 +863,7 @@ ul.dropdown-menu li {
 }
 
 .text-lg {
-  font-size: 50px;
+  font-size: clamp(1.75rem, 4vw + 1rem, 3.75rem);
 }
 
 .counter {
