@@ -51,8 +51,8 @@
             <h3 class="mb-3 h5">{{ .Params.labels.all_services | default "Alle Leistungen" }}</h3>
             <ul class="list-unstyled">
               {{ range where .Site.RegularPages "Section" "leistungen" }}
-              <li class="mb-2{{ if eq $.Permalink .Permalink }} font-weight-bold{{ end }}">
-                <a href="{{ .Permalink }}">
+              <li class="mb-2{{ if eq $.RelPermalink .RelPermalink }} font-weight-bold{{ end }}">
+                <a href="{{ .RelPermalink }}">
                   <i class="ti-angle-right mr-2 text-color"></i>{{ .Title }}
                 </a>
               </li>

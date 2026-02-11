@@ -7,11 +7,11 @@
     {{ range first 3 (sort $blogSection "Date" "desc") }}
     <div class="media py-3">
       {{ with .Params.image }}
-      <a href="{{ $.Permalink }}"><img class="mr-4" src="{{ . | relURL }}" alt="" style="width:100px;height:auto"></a>
+      <a href="{{ $.RelPermalink }}"><img class="mr-4" src="{{ . | relURL }}" alt="" style="width:100px;height:auto"></a>
       {{ end }}
       <div class="media-body">
         <span class="text-sm text-muted">{{ .Date.Format "02.01.2006" }}</span>
-        <h6 class="my-2"><a href="{{ .Permalink }}">{{ .Title }}</a></h6>
+        <h6 class="my-2"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h6>
       </div>
     </div>
     {{ end }}
