@@ -122,9 +122,79 @@
     </div>
 
     {{ else }}
-    {{/* --- Layout without form: map + sidebar side by side, offices hidden --- */}}
+    {{ with .Site.Params.formspark_form_id }}
+    {{/* --- Layout with Formspark form + sidebar + map --- */}}
     <div class="row">
-      {{ with .Params.map }}
+      <div class="col-lg-8 col-md-7">
+        <form action="https://submit-form.com/{{ . }}" method="POST">
+          <input type="hidden" name="_redirect" value="{{ "kontakt/gesendet/" | absURL }}">
+          <input type="hidden" name="_error" value="{{ "kontakt/fehler/" | absURL }}">
+          <input type="hidden" name="_append" value="false">
+
+          {{/* Honeypot – custom field name configured in Formspark dashboard + hugo.toml.
+               Visually hidden via positioning (not display:none) with an enticing label. */}}
+          {{ $hp := $.Site.Params.formspark_honeypot | default "_honeypot" }}
+          <div aria-hidden="true" style="position:absolute;left:-9999px;height:0;overflow:hidden">
+            <label for="{{ $hp }}">Website</label>
+            <input type="text" name="{{ $hp }}" id="{{ $hp }}" tabindex="-1" autocomplete="off" value="">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Name <span class="text-danger">*</span></label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Ihr Name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">E-Mail <span class="text-danger">*</span></label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Ihre E-Mail-Adresse" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input type="tel" name="phone" id="phone" class="form-control" placeholder="Ihre Telefonnummer (optional)">
+          </div>
+          <div class="form-group mb-4">
+            <label for="message">Nachricht <span class="text-danger">*</span></label>
+            <textarea name="message" id="message" class="form-control" rows="5" placeholder="Ihre Nachricht" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-main">Nachricht senden</button>
+        </form>
+      </div>
+
+      {{ with $.Params.sidebar }}
+      <div class="col-lg-4 col-md-5">
+        <div class="short-info mt-5 mt-md-0">
+          <ul class="list-unstyled">
+            <li>
+              <h5>{{ .labels.phone | default "Call Us" }}</h5>
+              <a href="tel:{{ .phone }}">{{ .phone }}</a>
+            </li>
+            <li>
+              <h5>{{ .labels.email | default "Email Us" }}</h5>
+              <a href="mailto:{{ .email }}">{{ .email }}</a>
+            </li>
+            <li>
+              <h5>{{ .labels.address | default "Location Map" }}</h5>
+              {{ .address }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    {{ with $.Params.map }}
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="google-map mt-90 mb-5">
+          {{ partial "osm-map.html" . }}
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+    {{ else }}
+    {{/* --- Layout without form: map + sidebar side by side --- */}}
+    <div class="row">
+      {{ with $.Params.map }}
       <div class="col-lg-8 col-md-7">
         <div class="google-map">
           {{ partial "osm-map.html" . }}
@@ -132,7 +202,7 @@
       </div>
       {{ end }}
 
-      {{ with .Params.sidebar }}
+      {{ with $.Params.sidebar }}
       <div class="col-lg-4 col-md-5">
         <div class="short-info mt-5 mt-md-0">
           <ul class="list-unstyled">
@@ -161,6 +231,7 @@
       </div>
       {{ end }}
     </div>
+    {{ end }}
     {{ end }}
   </div>
 </section>
