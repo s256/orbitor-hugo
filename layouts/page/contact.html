@@ -126,7 +126,7 @@
     {{/* --- Layout with Formspark form + sidebar + map --- */}}
     <div class="row">
       <div class="col-lg-8 col-md-7">
-        <form action="https://submit-form.com/{{ . }}" method="POST">
+        <form id="contact-form" name="contact" action="https://submit-form.com/{{ . }}" method="POST">
           <input type="hidden" name="_redirect" value="{{ "kontakt/gesendet/" | absURL }}">
           <input type="hidden" name="_error" value="{{ "kontakt/fehler/" | absURL }}">
           <input type="hidden" name="_append" value="false">
