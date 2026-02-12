@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode | default "en" }}">
+<html lang="{{ .Site.LanguageCode | default " en" }}">
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   {{ $desc := .Params.description | default .Site.Params.description }}
@@ -24,34 +25,36 @@
   {{ end }}{{ end }}
 
   <!-- Favicon -->
-  <link rel="shortcut icon" type="image/x-icon" href="{{ "images/favicon.ico" | relURL }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ " images/favicon.ico" | relURL }}">
 
   <!-- Plugins CSS -->
-  <link rel="stylesheet" href="{{ "plugins/bootstrap/css/bootstrap.min.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/themify/css/themify-icons.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/fontawesome/css/all.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/magnific-popup/dist/magnific-popup.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/glightbox/css/glightbox.min.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/modal-video/modal-video.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/animate-css/animate.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick-theme.css" | relURL }}">
+  <link rel="stylesheet" href="{{ " plugins/bootstrap/css/bootstrap.min.css" | relURL }}">
+  <link rel="stylesheet" href="{{ " plugins/themify/css/themify-icons.css" | relURL }}">
+  <link rel="stylesheet" href="{{ " plugins/fontawesome/css/all.css" | relURL }}">
+  <link rel="stylesheet" href="{{ " plugins/magnific-popup/dist/magnific-popup.css" | relURL }}">
+  <link rel="stylesheet" href="{{ " plugins/glightbox/css/glightbox.min.css" | relURL }}">
+  <link rel="stylesheet" href="{{ " plugins/modal-video/modal-video.css" | relURL }}">
+  <link rel="stylesheet" href="{{ " plugins/animate-css/animate.css" | relURL }}">
+  <link rel="stylesheet" href="{{ " plugins/slick-carousel/slick/slick.css" | relURL }}">
+  <link rel="stylesheet" href="{{ " plugins/slick-carousel/slick/slick-theme.css" | relURL }}">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+  <link rel="stylesheet" href="{{ " css/style.css" | relURL }}">
 
   <!-- Custom color overrides -->
   {{ partial "custom-colors.html" . }}
 
   {{ with .Site.Params.rybbit_site_id }}
-  <script defer data-domain="{{ replace (replace (replace site.BaseURL `https://` ``) `http://` ``) `/` `` | chomp }}" src="{{ ($.Site.Params.rybbit_host | default ``) | safeURL }}/api/script.js" data-site-id="{{ . }}" data-tracking-errors="true" async></script>
+  <script defer data-domain="{{ replace (replace (replace site.BaseURL `https://` ``) `http://` ``) `/` `` | chomp }}"
+    src="{{ ($.Site.Params.rybbit_host | default ``) | safeURL }}/api/script.js" data-site-id="{{ . }}"
+    data-tracking-errors="true" data-skip-patterns='["/admin/**"]' async></script>
   {{ end }}
 
   {{ with .Site.Params.formbricks_environment_id }}
   {{ $appUrl := $.Site.Params.formbricks_app_url }}
   {{ if $appUrl }}
   <script type="text/javascript">
-  !function(){var a="{{ $appUrl | safeJS }}",e="{{ . }}",t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=a+"/js/formbricks.umd.cjs",t.onload=function(){window.formbricks?window.formbricks.setup({environmentId:e,appUrl:a}):console.error("Formbricks failed to load.")};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}();
+    !function () { var a = "{{ $appUrl | safeJS }}", e = "{{ . }}", t = document.createElement("script"); t.type = "text/javascript", t.async = !0, t.src = a + "/js/formbricks.umd.cjs", t.onload = function () { window.formbricks ? window.formbricks.setup({ environmentId: e, appUrl: a }) : console.error("Formbricks failed to load.") }; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(t, s) }();
   </script>
   {{ end }}
   {{ end }}
@@ -63,7 +66,7 @@
 
 <body>
   {{ block "nav" . }}
-    {{ partial "navigation.html" . }}
+  {{ partial "navigation.html" . }}
   {{ end }}
 
   {{ block "main" . }}{{ end }}
@@ -71,16 +74,17 @@
   {{ partial "site-footer.html" . }}
 
   <!-- Essential Scripts -->
-  <script src="{{ "plugins/jquery/jquery.js" | relURL }}"></script>
-  <script src="{{ "js/contact.js" | relURL }}"></script>
-  <script src="{{ "plugins/bootstrap/js/popper.js" | relURL }}"></script>
-  <script src="{{ "plugins/bootstrap/js/bootstrap.min.js" | relURL }}"></script>
-  <script src="{{ "plugins/magnific-popup/dist/jquery.magnific-popup.min.js" | relURL }}"></script>
-  <script src="{{ "plugins/slick-carousel/slick/slick.min.js" | relURL }}"></script>
-  <script src="{{ "plugins/counterup/jquery.waypoints.min.js" | relURL }}"></script>
-  <script src="{{ "plugins/counterup/jquery.counterup.min.js" | relURL }}"></script>
-  <script src="{{ "plugins/modal-video/modal-video.js" | relURL }}"></script>
-  <script src="{{ "plugins/glightbox/js/glightbox.min.js" | relURL }}"></script>
-  <script src="{{ "js/script.js" | relURL }}"></script>
+  <script src="{{ " plugins/jquery/jquery.js" | relURL }}"></script>
+  <script src="{{ " js/contact.js" | relURL }}"></script>
+  <script src="{{ " plugins/bootstrap/js/popper.js" | relURL }}"></script>
+  <script src="{{ " plugins/bootstrap/js/bootstrap.min.js" | relURL }}"></script>
+  <script src="{{ " plugins/magnific-popup/dist/jquery.magnific-popup.min.js" | relURL }}"></script>
+  <script src="{{ " plugins/slick-carousel/slick/slick.min.js" | relURL }}"></script>
+  <script src="{{ " plugins/counterup/jquery.waypoints.min.js" | relURL }}"></script>
+  <script src="{{ " plugins/counterup/jquery.counterup.min.js" | relURL }}"></script>
+  <script src="{{ " plugins/modal-video/modal-video.js" | relURL }}"></script>
+  <script src="{{ " plugins/glightbox/js/glightbox.min.js" | relURL }}"></script>
+  <script src="{{ " js/script.js" | relURL }}"></script>
 </body>
+
 </html>
