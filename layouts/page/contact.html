@@ -130,6 +130,8 @@
           <input type="hidden" name="_redirect" value="{{ "kontakt/gesendet/" | absURL }}">
           <input type="hidden" name="_error" value="{{ "kontakt/fehler/" | absURL }}">
           <input type="hidden" name="_append" value="false">
+          <input type="hidden" name="_email.subject" value="Neue Kontaktanfrage über {{ $.Site.Title }}">
+          <input type="hidden" name="_email.from" value="{{ $.Site.Title }}">
 
           {{/* Honeypot – custom field name configured in Formspark dashboard + hugo.toml.
                Visually hidden via positioning (not display:none) with an enticing label. */}}
