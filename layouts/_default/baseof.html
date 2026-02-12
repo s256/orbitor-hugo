@@ -47,6 +47,15 @@
   <script defer data-domain="{{ replace (replace (replace site.BaseURL `https://` ``) `http://` ``) `/` `` | chomp }}" src="{{ ($.Site.Params.rybbit_host | default ``) | safeURL }}/api/script.js" data-site-id="{{ . }}" data-tracking-errors="true" async></script>
   {{ end }}
 
+  {{ with .Site.Params.formbricks_environment_id }}
+  {{ $appUrl := $.Site.Params.formbricks_app_url }}
+  {{ if $appUrl }}
+  <script type="text/javascript">
+  !function(){var a="{{ $appUrl | safeJS }}",e="{{ . }}",t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=a+"/js/formbricks.umd.cjs",t.onload=function(){window.formbricks?window.formbricks.setup({environmentId:e,appUrl:a}):console.error("Formbricks failed to load.")};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}();
+  </script>
+  {{ end }}
+  {{ end }}
+
   <!-- Structured Data -->
   {{ if .IsHome }}{{ partial "schema-localbusiness.html" . }}{{ end }}
   {{ partial "schema-breadcrumb.html" . }}
