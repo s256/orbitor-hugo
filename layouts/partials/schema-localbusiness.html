@@ -1,63 +1,43 @@
+{{- with .Site.Data.localbusiness -}}
+{{- $d := . -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "{{ .Site.BaseURL }}#localbusiness",
-  "name": "{{ .Site.Title }}",
-  "description": "{{ .Site.Params.description }}",
-  "url": "{{ .Site.BaseURL }}",
-  "telephone": "+49 2174 3404",
-  "email": "info@naturbaukonzepte.de",
+  "@id": "{{ site.BaseURL }}#localbusiness",
+  "name": "{{ site.Title }}",
+  "description": "{{ site.Params.description }}",
+  "url": "{{ site.BaseURL }}",
+  "telephone": "{{ $d.telephone }}",
+  "email": "{{ $d.email }}",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Holzer Str. 20",
-    "addressLocality": "Burscheid",
-    "postalCode": "51399",
-    "addressRegion": "NRW",
-    "addressCountry": "DE"
+    "streetAddress": "{{ $d.address.streetAddress }}",
+    "addressLocality": "{{ $d.address.addressLocality }}",
+    "postalCode": "{{ $d.address.postalCode }}",
+    "addressRegion": "{{ $d.address.addressRegion }}",
+    "addressCountry": "{{ $d.address.addressCountry }}"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 51.0833,
-    "longitude": 7.1167
+    "latitude": {{ $d.geo.latitude }},
+    "longitude": {{ $d.geo.longitude }}
   },
   "areaServed": [
-    {
-      "@type": "City",
-      "name": "Burscheid"
-    },
-    {
-      "@type": "City",
-      "name": "Leverkusen"
-    },
-    {
-      "@type": "City",
-      "name": "Köln"
-    },
-    {
-      "@type": "City",
-      "name": "Düsseldorf"
-    },
-    {
-      "@type": "State",
-      "name": "Nordrhein-Westfalen"
-    },
-    {
-      "@type": "AdministrativeArea",
-      "name": "Bergisches Land"
-    }
+    {{- range $i, $area := $d.areaServed }}
+    {{ if $i }},{{ end }}{ "@type": "{{ $area.type }}", "name": "{{ $area.name }}" }
+    {{- end }}
   ],
   "knowsAbout": [
-    "Fachwerksanierung",
-    "Altbausanierung",
-    "Fenstersanierung",
-    "Denkmalpflege",
-    "Ökologische Sanierung",
-    "Lehmbau",
-    "Energetische Sanierung"
+    {{- range $i, $topic := $d.knowsAbout }}
+    {{ if $i }},{{ end }}"{{ $topic }}"
+    {{- end }}
   ],
   "sameAs": [
-    "https://www.instagram.com/naturbaukonzepte/"
+    {{- range $i, $url := $d.sameAs }}
+    {{ if $i }},{{ end }}"{{ $url }}"
+    {{- end }}
   ]
 }
 </script>
+{{- end -}}
