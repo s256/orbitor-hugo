@@ -200,6 +200,153 @@
     {{ end }}
 
     {{ else }}
+    {{ with .Site.Params.contact_form_action }}
+    {{/* --- Layout with PHP contact form + sidebar + map --- */}}
+    <div class="row">
+      <div class="col-lg-8 col-md-7">
+        <form id="contact-form" novalidate>
+          {{/* Honeypot – hidden from humans, bots fill it in */}}
+          <div aria-hidden="true" style="position:absolute;left:-9999px;height:0;overflow:hidden">
+            <label for="website">Website</label>
+            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" value="">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Name <span class="text-danger">*</span></label>
+            <input type="text" name="Name" id="name" class="form-control" placeholder="Ihr Name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="kontaktaufnahme">Gewünschte Kontaktaufnahme</label>
+            <select id="kontaktaufnahme" name="Kontaktaufnahme" class="form-control">
+              <option value="E-Mail">E-Mail</option>
+              <option value="Telefon">Telefon (Rückruf)</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="email-field">
+            <label for="email">E-Mail-Adresse <span class="text-danger" id="email-required-mark">*</span></label>
+            <input type="email" name="E-Mail" id="email" class="form-control" placeholder="ihre@email.de" required>
+          </div>
+
+          <div id="phone-fields" style="display:none;">
+            <div class="form-group">
+              <label for="telefon">Telefonnummer <span class="text-danger">*</span></label>
+              <input type="tel" name="Telefonnummer" id="telefon" class="form-control" placeholder="+49 ...">
+            </div>
+            <div class="form-group">
+              <label for="erreichbarkeit">Bevorzugte Erreichbarkeit</label>
+              <input type="text" name="Erreichbarkeit" id="erreichbarkeit" class="form-control" placeholder="z.B. Mo–Fr 9–17 Uhr">
+            </div>
+          </div>
+
+          <div class="form-group mb-4">
+            <label for="anliegen">Ihr Anliegen <span class="text-danger">*</span></label>
+            <textarea name="Anliegen" id="anliegen" class="form-control" rows="5" placeholder="Ihre Nachricht..." required></textarea>
+          </div>
+
+          <div class="form-group form-check mb-4">
+            <input type="checkbox" name="privacynoticeaccepted" id="privacy" class="form-check-input" value="1" required>
+            <label class="form-check-label" for="privacy">
+              Ich habe die <a href="/datenschutz/" target="_blank">Datenschutzerklärung</a> zur Kenntnis genommen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu. <span class="text-danger">*</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-main" id="submitBtn">Nachricht senden</button>
+        </form>
+
+        <div id="contact-status" class="mt-3" style="display:none;" role="alert"></div>
+
+        <script>
+        (function () {
+          var form = document.getElementById('contact-form');
+          var statusEl = document.getElementById('contact-status');
+          var btn = document.getElementById('submitBtn');
+          var kontaktSelect = document.getElementById('kontaktaufnahme');
+          var phoneFields = document.getElementById('phone-fields');
+          var emailField = document.getElementById('email-field');
+          var emailInput = document.getElementById('email');
+          var emailMark = document.getElementById('email-required-mark');
+          var telefonInput = document.getElementById('telefon');
+
+          kontaktSelect.addEventListener('change', function () {
+            var isPhone = this.value === 'Telefon';
+            phoneFields.style.display = isPhone ? 'block' : 'none';
+            telefonInput.required = isPhone;
+            emailInput.required = !isPhone;
+            emailMark.style.display = isPhone ? 'none' : 'inline';
+          });
+
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!form.checkValidity()) { form.reportValidity(); return; }
+
+            btn.disabled = true;
+            btn.textContent = 'Wird gesendet\u2026';
+            statusEl.style.display = 'block';
+            statusEl.className = 'mt-3 alert alert-info';
+            statusEl.textContent = 'Nachricht wird gesendet\u2026';
+
+            fetch('{{ . }}', { method: 'POST', body: new FormData(form) })
+              .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+              .then(function (res) {
+                if (res.ok && res.data.ok) {
+                  statusEl.className = 'mt-3 alert alert-success';
+                  statusEl.textContent = 'Vielen Dank! Ihre Nachricht wurde erfolgreich versendet.';
+                  form.reset();
+                  phoneFields.style.display = 'none';
+                  emailField.style.display = 'block';
+                } else {
+                  statusEl.className = 'mt-3 alert alert-danger';
+                  statusEl.textContent = res.data.error || 'Ein Fehler ist aufgetreten.';
+                }
+              })
+              .catch(function () {
+                statusEl.className = 'mt-3 alert alert-danger';
+                statusEl.textContent = 'Verbindungsfehler. Bitte versuchen Sie es später erneut.';
+              })
+              .finally(function () {
+                btn.disabled = false;
+                btn.textContent = 'Nachricht senden';
+              });
+          });
+        })();
+        </script>
+      </div>
+
+      {{ with $.Params.sidebar }}
+      <div class="col-lg-4 col-md-5">
+        <div class="short-info mt-5 mt-md-0">
+          <ul class="list-unstyled">
+            <li>
+              <h5>{{ .labels.phone | default "Call Us" }}</h5>
+              <a href="tel:{{ .phone }}">{{ .phone }}</a>
+            </li>
+            <li>
+              <h5>{{ .labels.email | default "Email Us" }}</h5>
+              <a href="mailto:{{ .email }}">{{ .email }}</a>
+            </li>
+            <li>
+              <h5>{{ .labels.address | default "Location Map" }}</h5>
+              {{ .address }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    {{ with $.Params.map }}
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="google-map mt-90 mb-5">
+          {{ partial "osm-map.html" . }}
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+    {{ else }}
     {{/* --- Layout without form: map + sidebar side by side --- */}}
     <div class="row">
       {{ with $.Params.map }}
@@ -239,6 +386,7 @@
       </div>
       {{ end }}
     </div>
+    {{ end }}
     {{ end }}
     {{ end }}
   </div>
