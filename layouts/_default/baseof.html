@@ -27,19 +27,22 @@
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="{{ "images/favicon.ico" | relURL }}">
 
+  {{/* Cache-busting: append build timestamp to static assets */}}
+  {{ $v := now.Unix }}
+
   <!-- Plugins CSS -->
-  <link rel="stylesheet" href="{{ "plugins/bootstrap/css/bootstrap.min.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/themify/css/themify-icons.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/fontawesome/css/all.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/magnific-popup/dist/magnific-popup.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/glightbox/css/glightbox.min.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/modal-video/modal-video.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/animate-css/animate.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick.css" | relURL }}">
-  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick-theme.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "plugins/bootstrap/css/bootstrap.min.css" | relURL }}?v={{ $v }}">
+  <link rel="stylesheet" href="{{ "plugins/themify/css/themify-icons.css" | relURL }}?v={{ $v }}">
+  <link rel="stylesheet" href="{{ "plugins/fontawesome/css/all.css" | relURL }}?v={{ $v }}">
+  <link rel="stylesheet" href="{{ "plugins/magnific-popup/dist/magnific-popup.css" | relURL }}?v={{ $v }}">
+  <link rel="stylesheet" href="{{ "plugins/glightbox/css/glightbox.min.css" | relURL }}?v={{ $v }}">
+  <link rel="stylesheet" href="{{ "plugins/modal-video/modal-video.css" | relURL }}?v={{ $v }}">
+  <link rel="stylesheet" href="{{ "plugins/animate-css/animate.css" | relURL }}?v={{ $v }}">
+  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick.css" | relURL }}?v={{ $v }}">
+  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick-theme.css" | relURL }}?v={{ $v }}">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}?v={{ $v }}">
 
   <!-- Custom color overrides -->
   {{ partial "custom-colors.html" . }}
@@ -74,17 +77,17 @@
   {{ partial "site-footer.html" . }}
 
   <!-- Essential Scripts -->
-  <script src="{{ "plugins/jquery/jquery.js" | relURL }}"></script>
-  <script src="{{ "js/contact.js" | relURL }}"></script>
-  <script src="{{ "plugins/bootstrap/js/popper.js" | relURL }}"></script>
-  <script src="{{ "plugins/bootstrap/js/bootstrap.min.js" | relURL }}"></script>
-  <script src="{{ "plugins/magnific-popup/dist/jquery.magnific-popup.min.js" | relURL }}"></script>
-  <script src="{{ "plugins/slick-carousel/slick/slick.min.js" | relURL }}"></script>
-  <script src="{{ "plugins/counterup/jquery.waypoints.min.js" | relURL }}"></script>
-  <script src="{{ "plugins/counterup/jquery.counterup.min.js" | relURL }}"></script>
-  <script src="{{ "plugins/modal-video/modal-video.js" | relURL }}"></script>
-  <script src="{{ "plugins/glightbox/js/glightbox.min.js" | relURL }}"></script>
-  <script src="{{ "js/script.js" | relURL }}"></script>
+  <script src="{{ "plugins/jquery/jquery.js" | relURL }}?v={{ $v }}"></script>
+  <script src="{{ "js/contact.js" | relURL }}?v={{ $v }}"></script>
+  <script src="{{ "plugins/bootstrap/js/popper.js" | relURL }}?v={{ $v }}"></script>
+  <script src="{{ "plugins/bootstrap/js/bootstrap.min.js" | relURL }}?v={{ $v }}"></script>
+  <script src="{{ "plugins/magnific-popup/dist/jquery.magnific-popup.min.js" | relURL }}?v={{ $v }}"></script>
+  <script src="{{ "plugins/slick-carousel/slick/slick.min.js" | relURL }}?v={{ $v }}"></script>
+  <script src="{{ "plugins/counterup/jquery.waypoints.min.js" | relURL }}?v={{ $v }}"></script>
+  <script src="{{ "plugins/counterup/jquery.counterup.min.js" | relURL }}?v={{ $v }}"></script>
+  <script src="{{ "plugins/modal-video/modal-video.js" | relURL }}?v={{ $v }}"></script>
+  <script src="{{ "plugins/glightbox/js/glightbox.min.js" | relURL }}?v={{ $v }}"></script>
+  <script src="{{ "js/script.js" | relURL }}?v={{ $v }}"></script>
 </body>
 
 </html>
