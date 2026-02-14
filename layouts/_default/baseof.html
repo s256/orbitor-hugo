@@ -27,8 +27,9 @@
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="{{ "images/favicon.ico" | relURL }}">
 
-  {{/* Cache-busting: append build timestamp to static assets */}}
-  {{ $v := now.Unix }}
+  {{/* Cache-busting: use git hash from data/build.json (written by deploy.sh),
+       falls back to timestamp for local dev (hugo server) */}}
+  {{ $v := .Site.Data.build.hash | default now.Unix }}
 
   <!-- Plugins CSS -->
   <link rel="stylesheet" href="{{ "plugins/bootstrap/css/bootstrap.min.css" | relURL }}?v={{ $v }}">
