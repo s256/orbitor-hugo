@@ -39,7 +39,7 @@
 
           <ul class="list-inline footer-socials mt-5">
             {{ range .socials }}
-            <li class="list-inline-item"><a href="{{ .url }}" target="_blank"><i class="{{ .icon }} mr-2"></i></a></li>
+            <li class="list-inline-item"><a href="{{ .url }}" target="_blank" aria-label="{{ .name }}"><i class="{{ .icon }} mr-2"></i></a></li>
             {{ end }}
           </ul>
         </div>

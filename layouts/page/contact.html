@@ -84,7 +84,7 @@
               <ul class="social-icons list-inline mt-5">
                 {{ range .socials }}
                 <li class="list-inline-item">
-                  <a href="{{ .url }}" target="_blank"><i class="{{ .icon }}"></i></a>
+                  <a href="{{ .url }}" target="_blank" aria-label="{{ .name }}"><i class="{{ .icon }}"></i></a>
                 </li>
                 {{ end }}
               </ul>
@@ -378,7 +378,7 @@
           <ul class="social-icons list-inline mt-5">
             {{ range .socials }}
             <li class="list-inline-item">
-              <a href="{{ .url }}"><i class="{{ .icon }}"></i></a>
+              <a href="{{ .url }}" aria-label="{{ .name }}"><i class="{{ .icon }}"></i></a>
             </li>
             {{ end }}
           </ul>
