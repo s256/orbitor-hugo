@@ -35,12 +35,19 @@
   <link rel="stylesheet" href="{{ "plugins/bootstrap/css/bootstrap.min.css" | relURL }}?v={{ $v }}">
   <link rel="stylesheet" href="{{ "plugins/themify/css/themify-icons.css" | relURL }}?v={{ $v }}">
   <link rel="stylesheet" href="{{ "plugins/fontawesome/css/all.css" | relURL }}?v={{ $v }}">
-  <link rel="stylesheet" href="{{ "plugins/magnific-popup/dist/magnific-popup.css" | relURL }}?v={{ $v }}">
-  <link rel="stylesheet" href="{{ "plugins/glightbox/css/glightbox.min.css" | relURL }}?v={{ $v }}">
-  <link rel="stylesheet" href="{{ "plugins/modal-video/modal-video.css" | relURL }}?v={{ $v }}">
-  <link rel="stylesheet" href="{{ "plugins/animate-css/animate.css" | relURL }}?v={{ $v }}">
-  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick.css" | relURL }}?v={{ $v }}">
-  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick-theme.css" | relURL }}?v={{ $v }}">
+  <!-- Non-critical CSS (deferred — only needed for interactions/animations) -->
+  <link rel="stylesheet" href="{{ "plugins/magnific-popup/dist/magnific-popup.css" | relURL }}?v={{ $v }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ "plugins/magnific-popup/dist/magnific-popup.css" | relURL }}?v={{ $v }}"></noscript>
+  <link rel="stylesheet" href="{{ "plugins/glightbox/css/glightbox.min.css" | relURL }}?v={{ $v }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ "plugins/glightbox/css/glightbox.min.css" | relURL }}?v={{ $v }}"></noscript>
+  <link rel="stylesheet" href="{{ "plugins/modal-video/modal-video.css" | relURL }}?v={{ $v }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ "plugins/modal-video/modal-video.css" | relURL }}?v={{ $v }}"></noscript>
+  <link rel="stylesheet" href="{{ "plugins/animate-css/animate.css" | relURL }}?v={{ $v }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ "plugins/animate-css/animate.css" | relURL }}?v={{ $v }}"></noscript>
+  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick.css" | relURL }}?v={{ $v }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick.css" | relURL }}?v={{ $v }}"></noscript>
+  <link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick-theme.css" | relURL }}?v={{ $v }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ "plugins/slick-carousel/slick/slick-theme.css" | relURL }}?v={{ $v }}"></noscript>
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{{ "css/style.css" | relURL }}?v={{ $v }}">
